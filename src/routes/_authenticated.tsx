@@ -1,25 +1,12 @@
 import { createFileRoute, redirect, Outlet } from "@tanstack/react-router";
-import { supabase } from "@/integrations/supabase/client";
-import { mockAuth } from "@/integrations/mock-auth";
-
-const MOCK_AUTH_ENABLED = import.meta.env.VITE_MOCK_AUTH === "true" && import.meta.env.DEV;
 
 export const Route = createFileRoute("/_authenticated")({
-  beforeLoad: async ({ location }) => {
-    if (typeof window === "undefined") return; // skip on SSR
+  beforeLoad: ({ location }) => {
+    // Check if user info exists in localStorage
+    if (typeof window === "undefined") return;
     
-    let session = null;
-    
-    if (MOCK_AUTH_ENABLED) {
-      // Check mock auth first
-      session = mockAuth.getSession();
-    } else {
-      // Check real Supabase auth
-      const { data } = await supabase.auth.getSession();
-      session = data.session;
-    }
-    
-    if (!session) {
+    const userInfoStr = localStorage.getItem("dsa_launchpad_user_info");
+    if (!userInfoStr) {
       throw redirect({ to: "/login", search: { redirect: location.href } as any });
     }
   },

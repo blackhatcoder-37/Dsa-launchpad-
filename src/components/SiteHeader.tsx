@@ -1,11 +1,16 @@
-import { Link, useRouterState } from "@tanstack/react-router";
-import { useAuth } from "@/hooks/use-auth";
-import { supabase } from "@/integrations/supabase/client";
+import { Link, useRouterState, useNavigate } from "@tanstack/react-router";
+import { useUserInfo } from "@/hooks/use-user-info";
 import { Sprout, LogOut, Shield } from "lucide-react";
 
 export function SiteHeader() {
-  const { user, isAdmin } = useAuth();
+  const { userInfo, clearUserInfo } = useUserInfo();
+  const navigate = useNavigate();
   const pathname = useRouterState({ select: (r) => r.location.pathname });
+
+  const handleLogout = () => {
+    clearUserInfo();
+    navigate({ to: "/login" });
+  };
 
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 backdrop-blur-md bg-background/70">
@@ -20,24 +25,19 @@ export function SiteHeader() {
         <nav className="hidden md:flex items-center gap-1 text-sm">
           <NavLink to="/" active={pathname === "/"}>Roadmap</NavLink>
           <NavLink to="/capstones" active={pathname.startsWith("/capstones")}>Capstones</NavLink>
-          {isAdmin && (
-            <NavLink to="/admin" active={pathname.startsWith("/admin")}>
-              <Shield className="inline h-3.5 w-3.5 mr-1" />Admin
-            </NavLink>
-          )}
         </nav>
 
         <div className="flex items-center gap-2">
-          {user ? (
+          {userInfo ? (
             <>
               <span className="hidden sm:inline text-xs text-muted-foreground">
-                {user.email}
+                {userInfo.email}
               </span>
               <button
-                onClick={() => supabase.auth.signOut()}
+                onClick={handleLogout}
                 className="inline-flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-sm border border-border hover:bg-secondary transition-colors"
               >
-                <LogOut className="h-3.5 w-3.5" /> Sign out
+                <LogOut className="h-3.5 w-3.5" /> Log out
               </button>
             </>
           ) : (
@@ -45,7 +45,7 @@ export function SiteHeader() {
               to="/login"
               className="rounded-xl px-4 py-1.5 text-sm bg-primary text-primary-foreground hover:opacity-90 transition shadow-lantern"
             >
-              Sign in
+              Get Started
             </Link>
           )}
         </div>
