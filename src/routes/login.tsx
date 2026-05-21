@@ -60,7 +60,7 @@ function LoginPage() {
           setTimeout(() => navigate({ to: search?.redirect ? search.redirect as string : "/" }), 500);
         } else {
           // Real Supabase signup
-          const { error } = await supabase.auth.signUp({
+          const { error, data } = await supabase.auth.signUp({
             email,
             password,
             options: {
@@ -69,9 +69,16 @@ function LoginPage() {
             },
           });
           if (error) throw error;
-          setEmailSent(true);
-          toast.success("Account created! Check your email to confirm.");
-          setTimeout(() => setMode("signin"), 2000);
+          // Check if email confirmation is required
+          if (data.user && !data.session) {
+            setEmailSent(true);
+            toast.success("Account created! Check your email to confirm.");
+            setTimeout(() => setMode("signin"), 2000);
+          } else if (data.session) {
+            // Auto-confirmed (e.g., in development or with auto-confirm enabled)
+            toast.success("Account created! 🎉");
+            setTimeout(() => navigate({ to: search?.redirect ? search.redirect as string : "/" }), 500);
+          }
         }
       } else {
         if (MOCK_AUTH_ENABLED) {
@@ -82,10 +89,15 @@ function LoginPage() {
           navigate({ to: search?.redirect ? search.redirect as string : "/" });
         } else {
           // Real Supabase signin
-          const { error } = await supabase.auth.signInWithPassword({ email, password });
+          const { error, data } = await supabase.auth.signInWithPassword({ email, password });
           if (error) throw error;
-          toast.success("Welcome back! 🎌");
-          navigate({ to: search?.redirect ? search.redirect as string : "/" });
+          if (data.session) {
+            toast.success("Welcome back! 🎌");
+            // Wait a tick for the session to propagate through useAuth hook
+            setTimeout(() => {
+              navigate({ to: search?.redirect ? search.redirect as string : "/" });
+            }, 100);
+          }
         }
       }
     } catch (err) {
