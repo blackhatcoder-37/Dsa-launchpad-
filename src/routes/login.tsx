@@ -4,13 +4,11 @@ import { useUserInfo } from "@/hooks/use-user-info";
 import { Mail, Loader2, Sparkles, Sprout, User } from "lucide-react";
 import { toast } from "sonner";
 
-const MOCK_AUTH_ENABLED = import.meta.env.VITE_MOCK_AUTH === "true" && import.meta.env.DEV;
-
 export const Route = createFileRoute("/login")({
   head: () => ({
     meta: [
-      { title: "Sign in — DSA Launchpad" },
-      { name: "description", content: "Sign in to DSA Launchpad to track your 25-day Python algorithms journey." },
+      { title: "Get Started — DSA Launchpad" },
+      { name: "description", content: "Start your 25-day Python algorithms journey with DSA Launchpad." },
     ],
   }),
   component: LoginPage,
