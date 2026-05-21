@@ -90,21 +90,40 @@ function LoginPage() {
         } else {
           // Real Supabase signin
           const { error, data } = await supabase.auth.signInWithPassword({ email, password });
-          if (error) throw error;
+          if (error) {
+            throw error;
+          }
+          
           if (data.session) {
             toast.success("Welcome back! 🎌");
             // Wait a tick for the session to propagate through useAuth hook
             setTimeout(() => {
               navigate({ to: search?.redirect ? search.redirect as string : "/" });
             }, 100);
+          } else if (data.user && !data.user.confirmed_at) {
+            // User created but email not confirmed
+            throw new Error("Email not confirmed. Please check your email to confirm your account.");
+          } else {
+            throw new Error("Sign in failed. Please try again.");
           }
         }
       }
     } catch (err) {
       const message = (err as Error).message;
-      if (message.includes("Invalid login")) toast.error("Email or password incorrect");
-      else if (message.includes("Email not confirmed")) toast.error("Please confirm your email first");
-      else toast.error(message);
+      console.error("[Login Error]", message);
+      
+      // Check for specific Supabase error messages
+      if (message.includes("Invalid login") || message.includes("Invalid email or password")) {
+        toast.error("Email or password incorrect");
+      } else if (message.includes("Email not confirmed")) {
+        toast.error("Please confirm your email first");
+      } else if (message.includes("User not found")) {
+        toast.error("No account found with this email");
+      } else if (message.includes("invalid_grant")) {
+        toast.error("Invalid credentials. Please try again");
+      } else {
+        toast.error(message || "Sign in failed. Please try again.");
+      }
     } finally {
       setBusy(false);
     }

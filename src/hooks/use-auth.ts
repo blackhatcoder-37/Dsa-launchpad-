@@ -61,24 +61,33 @@ export function useAuth(): AuthState {
     // Real Supabase auth flow
     // 1) set up listener FIRST
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, s) => {
+      console.log("[Auth State Change]", _event, s?.user?.email);
       setSession(s);
       if (s?.user) {
         // fire-and-forget — touch last_login + role check
-        supabase.rpc("touch_last_login").then(() => {});
+        supabase.rpc("touch_last_login").catch(err => console.error("[RPC Error]", err));
         supabase
           .from("user_roles")
           .select("role")
           .eq("user_id", s.user.id)
-          .then(({ data }) => {
+          .then(({ data, error }) => {
+            if (error) {
+              console.error("[Role Fetch Error]", error);
+              return;
+            }
             setIsAdmin(!!data?.some((r) => r.role === "admin"));
           });
       } else {
         setIsAdmin(false);
       }
+      setLoading(false);
     });
 
     // 2) then hydrate existing session
-    supabase.auth.getSession().then(({ data }) => {
+    supabase.auth.getSession().then(({ data, error }) => {
+      if (error) {
+        console.error("[Session Fetch Error]", error);
+      }
       setSession(data.session);
       setLoading(false);
     });
