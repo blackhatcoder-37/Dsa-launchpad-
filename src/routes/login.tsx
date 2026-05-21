@@ -7,7 +7,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { Mail, Lock, Loader2, ArrowRight, Sparkles, Eye, EyeOff, Sprout } from "lucide-react";
 import { toast } from "sonner";
 
-const MOCK_AUTH_ENABLED = import.meta.env.VITE_MOCK_AUTH === "true";
+const MOCK_AUTH_ENABLED = import.meta.env.VITE_MOCK_AUTH === "true" && import.meta.env.DEV;
 
 export const Route = createFileRoute("/login")({
   head: () => ({

@@ -3,7 +3,7 @@ import type { Session, User } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
 import { mockAuth } from "@/integrations/mock-auth";
 
-const MOCK_AUTH_ENABLED = import.meta.env.VITE_MOCK_AUTH === "true";
+const MOCK_AUTH_ENABLED = import.meta.env.VITE_MOCK_AUTH === "true" && import.meta.env.DEV;
 
 export type AuthState = {
   session: Session | null;
