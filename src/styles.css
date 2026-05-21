@@ -1,0 +1,159 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* DSA Launchpad — Studio Ghibli warmth meets modern dark mode.
+   Forest greens, lantern amber, cherry blossom, parchment cream. */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 6px);
+  --radius-2xl: calc(var(--radius) + 12px);
+  --radius-3xl: calc(var(--radius) + 20px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+
+  --color-blossom: var(--blossom);
+  --color-lantern: var(--lantern);
+  --color-moss: var(--moss);
+  --color-sky: var(--sky);
+  --color-parchment: var(--parchment);
+
+  --font-display: "Fraunces", "Iowan Old Style", "Georgia", serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+:root {
+  --radius: 1rem;
+
+  /* Cozy dark forest at dusk */
+  --background: oklch(0.21 0.025 165);
+  --foreground: oklch(0.95 0.025 85);
+
+  --card: oklch(0.255 0.028 165);
+  --card-foreground: oklch(0.95 0.025 85);
+
+  --popover: oklch(0.255 0.028 165);
+  --popover-foreground: oklch(0.95 0.025 85);
+
+  /* Lantern amber — primary glow */
+  --primary: oklch(0.82 0.13 75);
+  --primary-foreground: oklch(0.22 0.04 75);
+
+  /* Moss secondary */
+  --secondary: oklch(0.32 0.04 165);
+  --secondary-foreground: oklch(0.95 0.025 85);
+
+  --muted: oklch(0.28 0.025 165);
+  --muted-foreground: oklch(0.72 0.025 85);
+
+  /* Cherry blossom accent */
+  --accent: oklch(0.78 0.09 15);
+  --accent-foreground: oklch(0.22 0.04 15);
+
+  --destructive: oklch(0.62 0.18 25);
+  --destructive-foreground: oklch(0.98 0 0);
+
+  --border: oklch(0.35 0.03 165 / 60%);
+  --input: oklch(0.32 0.03 165);
+  --ring: oklch(0.82 0.13 75 / 60%);
+
+  /* Pastel accents */
+  --blossom: oklch(0.85 0.07 15);
+  --lantern: oklch(0.85 0.13 75);
+  --moss: oklch(0.55 0.08 150);
+  --sky: oklch(0.78 0.08 230);
+  --parchment: oklch(0.94 0.03 85);
+
+  --gradient-dusk: linear-gradient(135deg, oklch(0.21 0.025 165) 0%, oklch(0.28 0.035 220) 100%);
+  --gradient-lantern: linear-gradient(135deg, var(--lantern), var(--blossom));
+  --gradient-forest: linear-gradient(180deg, oklch(0.27 0.03 165) 0%, oklch(0.21 0.025 165) 100%);
+
+  --shadow-lantern: 0 10px 40px -10px oklch(0.82 0.13 75 / 35%);
+  --shadow-soft: 0 8px 30px -12px oklch(0 0 0 / 40%);
+  --shadow-ink: 0 2px 0 0 oklch(0 0 0 / 25%);
+}
+
+.dark {
+  --background: oklch(0.21 0.025 165);
+  --foreground: oklch(0.95 0.025 85);
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+  }
+  * {
+    border-color: var(--color-border);
+  }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-body);
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% 0%, oklch(0.32 0.05 75 / 18%), transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 100%, oklch(0.32 0.05 230 / 15%), transparent 60%);
+    background-attachment: fixed;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+  code, pre {
+    font-family: var(--font-mono);
+  }
+}
+
+@layer utilities {
+  .font-display { font-family: var(--font-display); }
+  .font-mono { font-family: var(--font-mono); }
+  .bg-gradient-dusk { background: var(--gradient-dusk); }
+  .bg-gradient-lantern { background: var(--gradient-lantern); }
+  .bg-gradient-forest { background: var(--gradient-forest); }
+  .shadow-lantern { box-shadow: var(--shadow-lantern); }
+  .shadow-soft { box-shadow: var(--shadow-soft); }
+  .shadow-ink { box-shadow: var(--shadow-ink); }
+
+  .hand-card {
+    border-radius: var(--radius-2xl);
+    background: var(--card);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .lantern-glow {
+    box-shadow:
+      0 0 0 1px oklch(0.82 0.13 75 / 30%),
+      0 0 30px -4px oklch(0.82 0.13 75 / 45%);
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.animate-float { animation: float-slow 6s ease-in-out infinite; }
