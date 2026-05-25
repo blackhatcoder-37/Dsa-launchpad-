@@ -8,6 +8,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 
+// Force rebuild - fix Vercel CDN propagation
 import appCss from "../styles.css?url";
 import { Toaster } from "@/components/ui/sonner";
 
