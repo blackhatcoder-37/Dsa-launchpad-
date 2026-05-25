@@ -67,7 +67,9 @@ export function useAuth(): AuthState {
       setSession(s);
       if (s?.user) {
         // fire-and-forget — touch last_login + role check
-        supabase.rpc("touch_last_login").catch((err) => console.error("[RPC Error]", err));
+        void Promise.resolve(supabase.rpc("touch_last_login")).catch((err) =>
+          console.error("[RPC Error]", err)
+        );
         supabase
           .from("user_roles")
           .select("role")
