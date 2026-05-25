@@ -132,7 +132,28 @@ function AdminPage() {
   }, [rows]);
 
   if (loading) {
-    return <AdminShell isLoading={true} />;
+    return (
+      <div className="min-h-screen">
+        <SiteHeader />
+        <div className="mx-auto max-w-7xl px-6 py-10">
+          <div className="flex gap-3 mb-8">
+            <div className="h-10 w-10 bg-secondary rounded-lg animate-pulse" />
+            <div className="flex-1">
+              <div className="h-8 bg-secondary rounded-lg w-1/3 mb-2 animate-pulse" />
+              <div className="h-4 bg-secondary rounded-lg w-2/3 animate-pulse" />
+            </div>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className="hand-card p-4">
+                <div className="h-6 bg-secondary rounded-lg mb-3 animate-pulse" />
+                <div className="h-8 bg-secondary rounded-lg w-1/2 animate-pulse" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
   }
 
   if (!isAuthorizedAdmin) {
