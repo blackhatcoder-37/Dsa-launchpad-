@@ -1,24 +1,26 @@
 {
   "buildCommand": "npm run build",
+  "outputDirectory": "dist/client",
+  "installCommand": "npm install",
   "env": {
     "NODE_ENV": "production"
   },
-  "functions": {
-    "api/index.js": {
-      "runtime": "nodejs18.x"
-    }
-  },
   "routes": [
     {
-      "src": "/assets/(.*)",
+      "src": "/assets/(.+)",
       "headers": {
         "cache-control": "public, max-age=31536000, immutable"
-      },
-      "dest": "/dist/client/assets/$1"
+      }
+    },
+    {
+      "src": "/index.html",
+      "headers": {
+        "cache-control": "public, max-age=3600"
+      }
     },
     {
       "src": "/(.*)",
-      "dest": "/api"
+      "dest": "/index.html"
     }
   ]
 }
