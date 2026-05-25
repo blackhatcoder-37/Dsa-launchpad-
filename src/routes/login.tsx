@@ -8,7 +8,10 @@ export const Route = createFileRoute("/login")({
   head: () => ({
     meta: [
       { title: "Get Started — DSA Launchpad" },
-      { name: "description", content: "Start your 25-day Python algorithms journey with DSA Launchpad." },
+      {
+        name: "description",
+        content: "Start your 25-day Python algorithms journey with DSA Launchpad.",
+      },
     ],
   }),
   component: LoginPage,
@@ -92,9 +95,7 @@ function LoginPage() {
         </Link>
 
         <div className="hand-card p-8">
-          <h1 className="font-display text-2xl text-center mb-1">
-            Begin your journey
-          </h1>
+          <h1 className="font-display text-2xl text-center mb-1">Begin your journey</h1>
           <p className="text-center text-sm text-muted-foreground mb-6">
             Twenty-five days of cozy Python algorithms.
           </p>
@@ -135,7 +136,11 @@ function LoginPage() {
               disabled={busy}
               className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-primary text-primary-foreground px-4 py-2.5 text-sm font-medium shadow-lantern hover:opacity-95 disabled:opacity-60"
             >
-              {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : <Sparkles className="h-4 w-4" />}
+              {busy ? (
+                <Loader2 className="h-4 w-4 animate-spin" />
+              ) : (
+                <Sparkles className="h-4 w-4" />
+              )}
               Get Started
             </button>
           </form>
@@ -144,4 +149,3 @@ function LoginPage() {
     </div>
   );
 }
-

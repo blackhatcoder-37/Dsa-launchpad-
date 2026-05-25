@@ -35,7 +35,11 @@ def has_duplicate(nums):
             if nums[i] == nums[j]:
                 return True
     return False`,
-    leetcode: { id: "217", title: "Contains Duplicate", url: "https://leetcode.com/problems/contains-duplicate/" },
+    leetcode: {
+      id: "217",
+      title: "Contains Duplicate",
+      url: "https://leetcode.com/problems/contains-duplicate/",
+    },
   },
   {
     day: 2,
@@ -74,7 +78,11 @@ def has_duplicate(nums):
         left += 1
         right -= 1
     return arr`,
-    leetcode: { id: "125", title: "Valid Palindrome", url: "https://leetcode.com/problems/valid-palindrome/" },
+    leetcode: {
+      id: "125",
+      title: "Valid Palindrome",
+      url: "https://leetcode.com/problems/valid-palindrome/",
+    },
   },
   {
     day: 4,
@@ -90,7 +98,11 @@ def has_duplicate(nums):
     return counts
 
 print(frequency("ghibli"))`,
-    leetcode: { id: "242", title: "Valid Anagram", url: "https://leetcode.com/problems/valid-anagram/" },
+    leetcode: {
+      id: "242",
+      title: "Valid Anagram",
+      url: "https://leetcode.com/problems/valid-anagram/",
+    },
   },
   {
     day: 5,
@@ -119,7 +131,11 @@ class LinkedList:
         cur, out = self.head, []
         while cur: out.append(cur.value); cur = cur.next
         return out`,
-    leetcode: { id: "206", title: "Reverse Linked List", url: "https://leetcode.com/problems/reverse-linked-list/" },
+    leetcode: {
+      id: "206",
+      title: "Reverse Linked List",
+      url: "https://leetcode.com/problems/reverse-linked-list/",
+    },
   },
   {
     day: 6,
@@ -132,7 +148,11 @@ class LinkedList:
 stack.append("a")
 stack.append("b")
 print(stack.pop())  # "b"`,
-    leetcode: { id: "20", title: "Valid Parentheses", url: "https://leetcode.com/problems/valid-parentheses/" },
+    leetcode: {
+      id: "20",
+      title: "Valid Parentheses",
+      url: "https://leetcode.com/problems/valid-parentheses/",
+    },
   },
   {
     day: 7,
@@ -145,7 +165,11 @@ print(stack.pop())  # "b"`,
 q = deque()
 q.append("a"); q.append("b")
 print(q.popleft())  # "a"`,
-    leetcode: { id: "225", title: "Implement Stack using Queues", url: "https://leetcode.com/problems/implement-stack-using-queues/" },
+    leetcode: {
+      id: "225",
+      title: "Implement Stack using Queues",
+      url: "https://leetcode.com/problems/implement-stack-using-queues/",
+    },
   },
   {
     day: 8,
@@ -162,7 +186,11 @@ print(q.popleft())  # "a"`,
         if arr[mid] < target: lo = mid + 1
         else: hi = mid - 1
     return -1`,
-    leetcode: { id: "704", title: "Binary Search", url: "https://leetcode.com/problems/binary-search/" },
+    leetcode: {
+      id: "704",
+      title: "Binary Search",
+      url: "https://leetcode.com/problems/binary-search/",
+    },
   },
   {
     day: 9,
@@ -177,7 +205,11 @@ print(q.popleft())  # "a"`,
         s += arr[i] - arr[i - k]
         best = max(best, s)
     return best`,
-    leetcode: { id: "121", title: "Best Time to Buy and Sell Stock", url: "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/" },
+    leetcode: {
+      id: "121",
+      title: "Best Time to Buy and Sell Stock",
+      url: "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/",
+    },
   },
   {
     day: 10,
@@ -193,7 +225,11 @@ print(q.popleft())  # "a"`,
             arr[j + 1] = arr[j]; j -= 1
         arr[j + 1] = key
     return arr`,
-    leetcode: { id: "912", title: "Sort an Array", url: "https://leetcode.com/problems/sort-an-array/" },
+    leetcode: {
+      id: "912",
+      title: "Sort an Array",
+      url: "https://leetcode.com/problems/sort-an-array/",
+    },
   },
   {
     day: 11,
@@ -209,7 +245,11 @@ print(q.popleft())  # "a"`,
 def fib(n):
     if n < 2: return n
     return fib(n - 1) + fib(n - 2)`,
-    leetcode: { id: "509", title: "Fibonacci Number", url: "https://leetcode.com/problems/fibonacci-number/" },
+    leetcode: {
+      id: "509",
+      title: "Fibonacci Number",
+      url: "https://leetcode.com/problems/fibonacci-number/",
+    },
   },
   {
     day: 12,
@@ -231,7 +271,11 @@ def merge(a, b):
         if a[i] <= b[j]: out.append(a[i]); i += 1
         else: out.append(b[j]); j += 1
     return out + a[i:] + b[j:]`,
-    leetcode: { id: "88", title: "Merge Sorted Array", url: "https://leetcode.com/problems/merge-sorted-array/" },
+    leetcode: {
+      id: "88",
+      title: "Merge Sorted Array",
+      url: "https://leetcode.com/problems/merge-sorted-array/",
+    },
   },
   {
     day: 13,
@@ -255,7 +299,11 @@ def partition(arr, lo, hi):
             i += 1; arr[i], arr[j] = arr[j], arr[i]
     arr[i + 1], arr[hi] = arr[hi], arr[i + 1]
     return i + 1`,
-    leetcode: { id: "215", title: "Kth Largest Element in an Array", url: "https://leetcode.com/problems/kth-largest-element-in-an-array/" },
+    leetcode: {
+      id: "215",
+      title: "Kth Largest Element in an Array",
+      url: "https://leetcode.com/problems/kth-largest-element-in-an-array/",
+    },
   },
   {
     day: 14,
@@ -267,7 +315,11 @@ def partition(arr, lo, hi):
     code: `def transpose(m):
     rows, cols = len(m), len(m[0])
     return [[m[r][c] for r in range(rows)] for c in range(cols)]`,
-    leetcode: { id: "73", title: "Set Matrix Zeroes", url: "https://leetcode.com/problems/set-matrix-zeroes/" },
+    leetcode: {
+      id: "73",
+      title: "Set Matrix Zeroes",
+      url: "https://leetcode.com/problems/set-matrix-zeroes/",
+    },
   },
   {
     day: 15,
@@ -291,7 +343,11 @@ def partition(arr, lo, hi):
         elif len(self.store) >= self.cap:
             oldest = next(iter(self.store)); self.store.pop(oldest)
         self.store[key] = value`,
-    leetcode: { id: "387", title: "First Unique Character in a String", url: "https://leetcode.com/problems/first-unique-character-in-a-string/" },
+    leetcode: {
+      id: "387",
+      title: "First Unique Character in a String",
+      url: "https://leetcode.com/problems/first-unique-character-in-a-string/",
+    },
   },
   {
     day: 16,
@@ -309,7 +365,11 @@ def insert(root, val):
     if val < root.val: root.left = insert(root.left, val)
     else: root.right = insert(root.right, val)
     return root`,
-    leetcode: { id: "700", title: "Search in a Binary Search Tree", url: "https://leetcode.com/problems/search-in-a-binary-search-tree/" },
+    leetcode: {
+      id: "700",
+      title: "Search in a Binary Search Tree",
+      url: "https://leetcode.com/problems/search-in-a-binary-search-tree/",
+    },
   },
   {
     day: 17,
@@ -321,7 +381,11 @@ def insert(root, val):
     code: `def inorder(node, out):
     if not node: return
     inorder(node.left, out); out.append(node.val); inorder(node.right, out)`,
-    leetcode: { id: "94", title: "Binary Tree Inorder Traversal", url: "https://leetcode.com/problems/binary-tree-inorder-traversal/" },
+    leetcode: {
+      id: "94",
+      title: "Binary Tree Inorder Traversal",
+      url: "https://leetcode.com/problems/binary-tree-inorder-traversal/",
+    },
   },
   {
     day: 18,
@@ -342,7 +406,11 @@ def level_order(root):
             if n.right: q.append(n.right)
         out.append(level)
     return out`,
-    leetcode: { id: "102", title: "Binary Tree Level Order Traversal", url: "https://leetcode.com/problems/binary-tree-level-order-traversal/" },
+    leetcode: {
+      id: "102",
+      title: "Binary Tree Level Order Traversal",
+      url: "https://leetcode.com/problems/binary-tree-level-order-traversal/",
+    },
   },
   {
     day: 19,
@@ -357,7 +425,11 @@ def level_order(root):
   "C": ["A", "D"],
   "D": ["B", "C"],
 }`,
-    leetcode: { id: "1971", title: "Find if Path Exists in Graph", url: "https://leetcode.com/problems/find-if-path-exists-in-graph/" },
+    leetcode: {
+      id: "1971",
+      title: "Find if Path Exists in Graph",
+      url: "https://leetcode.com/problems/find-if-path-exists-in-graph/",
+    },
   },
   {
     day: 20,
@@ -376,7 +448,11 @@ def level_order(root):
             if nei not in visited:
                 visited.add(nei); q.append(nei)
     return order`,
-    leetcode: { id: "200", title: "Number of Islands", url: "https://leetcode.com/problems/number-of-islands/" },
+    leetcode: {
+      id: "200",
+      title: "Number of Islands",
+      url: "https://leetcode.com/problems/number-of-islands/",
+    },
   },
   {
     day: 21,
@@ -389,7 +465,11 @@ def level_order(root):
 h = []
 heapq.heappush(h, 5); heapq.heappush(h, 1); heapq.heappush(h, 3)
 print(heapq.heappop(h))  # 1`,
-    leetcode: { id: "1046", title: "Last Stone Weight", url: "https://leetcode.com/problems/last-stone-weight/" },
+    leetcode: {
+      id: "1046",
+      title: "Last Stone Weight",
+      url: "https://leetcode.com/problems/last-stone-weight/",
+    },
   },
   {
     day: 22,
@@ -404,7 +484,11 @@ print(heapq.heappop(h))  # 1`,
         cur = max(x, cur + x)
         best = max(best, cur)
     return best`,
-    leetcode: { id: "53", title: "Maximum Subarray", url: "https://leetcode.com/problems/maximum-subarray/" },
+    leetcode: {
+      id: "53",
+      title: "Maximum Subarray",
+      url: "https://leetcode.com/problems/maximum-subarray/",
+    },
   },
   {
     day: 23,
@@ -419,7 +503,11 @@ print(heapq.heappop(h))  # 1`,
     if n < 2: return n
     memo[n] = fib(n - 1, memo) + fib(n - 2, memo)
     return memo[n]`,
-    leetcode: { id: "70", title: "Climbing Stairs", url: "https://leetcode.com/problems/climbing-stairs/" },
+    leetcode: {
+      id: "70",
+      title: "Climbing Stairs",
+      url: "https://leetcode.com/problems/climbing-stairs/",
+    },
   },
   {
     day: 24,
@@ -433,7 +521,11 @@ def single_number(nums):
     out = 0
     for x in nums: out ^= x
     return out`,
-    leetcode: { id: "136", title: "Single Number", url: "https://leetcode.com/problems/single-number/" },
+    leetcode: {
+      id: "136",
+      title: "Single Number",
+      url: "https://leetcode.com/problems/single-number/",
+    },
   },
   {
     day: 25,
@@ -445,7 +537,11 @@ def single_number(nums):
     code: `def reverse_string(s):
     s.reverse()
     return s`,
-    leetcode: { id: "344", title: "Reverse String", url: "https://leetcode.com/problems/reverse-string/" },
+    leetcode: {
+      id: "344",
+      title: "Reverse String",
+      url: "https://leetcode.com/problems/reverse-string/",
+    },
   },
 ];
 

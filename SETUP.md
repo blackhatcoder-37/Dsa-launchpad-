@@ -30,6 +30,7 @@ VITE_LOVABLE_PROJECT_ID=your-project-id
 ```
 
 Get these values from:
+
 - **Supabase URL & Key**: Project Settings → API
 - **Lovable Project ID**: Your Lovable dashboard
 
@@ -46,6 +47,7 @@ supabase db push
 ```
 
 This will create:
+
 - `profiles` table
 - `user_roles` table
 - `module_progress` table
@@ -56,8 +58,10 @@ This will create:
 #### Verify Migration Success
 
 In Supabase Dashboard:
+
 1. Go to SQL Editor
 2. Run:
+
 ```sql
 SELECT tablename FROM pg_tables WHERE schemaname = 'public';
 ```
@@ -148,16 +152,19 @@ wrangler deploy
 ### Deploy to Other Platforms
 
 **Vercel:**
+
 ```bash
 vercel deploy
 ```
 
 **Netlify:**
+
 ```bash
 netlify deploy --prod --dir=dist
 ```
 
 **Docker:**
+
 ```dockerfile
 FROM node:18-alpine
 
@@ -177,6 +184,7 @@ CMD ["npm", "run", "preview"]
 ## Environment Variables for Production
 
 ### Required
+
 ```env
 VITE_SUPABASE_URL=your-supabase-url
 VITE_SUPABASE_ANON_KEY=your-anon-key
@@ -184,6 +192,7 @@ VITE_LOVABLE_PROJECT_ID=your-project-id
 ```
 
 ### Optional
+
 ```env
 VITE_API_BASE_URL=your-api-endpoint
 VITE_LOG_LEVEL=info
@@ -214,6 +223,7 @@ npm run test
 ### Manual Testing Checklist
 
 #### Authentication
+
 - [ ] Email signup works
 - [ ] Email login works
 - [ ] Google OAuth works
@@ -221,6 +231,7 @@ npm run test
 - [ ] Logout works
 
 #### Student Features
+
 - [ ] Homepage loads
 - [ ] Can mark days complete
 - [ ] Progress bar updates
@@ -228,6 +239,7 @@ npm run test
 - [ ] Can access LeetCode links
 
 #### Admin Features
+
 - [ ] Admin dashboard loads
 - [ ] Can search students
 - [ ] Can filter by phase
@@ -236,6 +248,7 @@ npm run test
 - [ ] Statistics are accurate
 
 #### UI/UX
+
 - [ ] Mobile responsive
 - [ ] Loading states work
 - [ ] Animations smooth
@@ -245,25 +258,33 @@ npm run test
 ## Common Issues & Solutions
 
 ### Issue: "Supabase URL not set"
+
 **Solution**: Check `.env.local` has correct `VITE_SUPABASE_URL`
 
 ### Issue: Admin dashboard shows "Admin only"
+
 **Solution**: Ensure user_role is set in database for your user
 
 ### Issue: Google OAuth not working
-**Solution**: 
+
+**Solution**:
+
 1. Verify redirect URI matches exactly
 2. Check Google OAuth credentials
 3. Verify enabled in Supabase
 
 ### Issue: Data not appearing in admin dashboard
+
 **Solution**:
+
 1. Check RLS policies are correct
 2. Verify user has completed days
 3. Check database migrations ran
 
 ### Issue: Slow page loads
+
 **Solution**:
+
 1. Check Supabase indexes
 2. Optimize database queries
 3. Enable caching
@@ -273,6 +294,7 @@ npm run test
 ### Supabase Dashboard
 
 Monitor:
+
 - Database usage
 - Auth sign-ups
 - API call rates
@@ -282,6 +304,7 @@ Monitor:
 ### Application Monitoring
 
 Track:
+
 - Page load times
 - Error rates
 - User engagement
@@ -290,17 +313,20 @@ Track:
 ## Scaling Considerations
 
 ### Database
+
 - Enable backups
 - Set up replication
 - Monitor query performance
 - Optimize indexes
 
 ### Authentication
+
 - Monitor failed login attempts
 - Track concurrent users
 - Set rate limits
 
 ### Content Delivery
+
 - Use CDN for static assets
 - Cache API responses
 - Compress assets
@@ -308,6 +334,7 @@ Track:
 ## Maintenance
 
 ### Regular Tasks
+
 - Review admin dashboard weekly
 - Monitor student progress
 - Update course content if needed
@@ -315,6 +342,7 @@ Track:
 - Review error logs
 
 ### Updates
+
 - Keep dependencies updated
 - Review security updates
 - Test before deploying
@@ -324,22 +352,26 @@ Track:
 ### Debug Mode
 
 Enable detailed logging:
+
 ```javascript
 // In development
-localStorage.setItem('debug', 'dsa-*');
+localStorage.setItem("debug", "dsa-*");
 ```
 
 ### Check Logs
 
 **Supabase:**
+
 - Dashboard → Logs → Database
 - Dashboard → Logs → Auth
 
 **Application:**
+
 - Browser console (F12)
 - Network tab
 
 **Server (if using backend):**
+
 - Application logs
 - Error tracking service
 
@@ -367,12 +399,14 @@ SELECT * FROM public.login_activity WHERE user_id = 'user-id';
 ## Performance Optimization
 
 ### Frontend
+
 - Lazy load modules
 - Optimize images
 - Minimize CSS/JS
 - Use React.memo for components
 
 ### Backend
+
 - Add database indexes
 - Cache frequent queries
 - Optimize RLS policies

@@ -11,10 +11,7 @@ export function useProgress(userId: string | undefined) {
       setLoading(false);
       return;
     }
-    const { data } = await supabase
-      .from("module_progress")
-      .select("day")
-      .eq("user_id", userId);
+    const { data } = await supabase.from("module_progress").select("day").eq("user_id", userId);
     setCompleted(new Set((data ?? []).map((r) => r.day)));
     setLoading(false);
   };

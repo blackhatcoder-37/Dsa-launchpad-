@@ -26,7 +26,8 @@ export function ErrorBoundary({ error, retry }: { error: Error; retry: () => voi
           </Link>
         </div>
         <p className="mt-6 text-xs text-muted-foreground">
-          Error ID: <code className="font-mono text-[10px] bg-secondary/40 px-1.5 py-0.5 rounded">
+          Error ID:{" "}
+          <code className="font-mono text-[10px] bg-secondary/40 px-1.5 py-0.5 rounded">
             {Math.random().toString(36).substr(2, 9)}
           </code>
         </p>
@@ -41,7 +42,10 @@ export function LoadingSpinner() {
     <div className="flex items-center justify-center h-screen">
       <div className="relative">
         <div className="h-12 w-12 rounded-full border-4 border-secondary animate-spin" />
-        <div className="absolute inset-0 h-12 w-12 rounded-full border-4 border-transparent border-t-primary animate-spin" style={{ animationDirection: "reverse", animationDuration: "2s" }} />
+        <div
+          className="absolute inset-0 h-12 w-12 rounded-full border-4 border-transparent border-t-primary animate-spin"
+          style={{ animationDirection: "reverse", animationDuration: "2s" }}
+        />
       </div>
     </div>
   );

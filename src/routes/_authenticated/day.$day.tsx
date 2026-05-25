@@ -27,7 +27,9 @@ function DayPage() {
         <SiteHeader />
         <div className="text-center mt-20">
           <p className="text-muted-foreground">Day not found.</p>
-          <Link to="/" className="text-primary hover:underline">Back to roadmap</Link>
+          <Link to="/" className="text-primary hover:underline">
+            Back to roadmap
+          </Link>
         </div>
       </div>
     );
@@ -45,7 +47,10 @@ function DayPage() {
       <div className="border-b border-border/60 bg-card/30">
         <div className="mx-auto max-w-7xl px-6 py-5 flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-4">
-            <Link to="/" className="text-xs text-muted-foreground hover:text-foreground inline-flex items-center gap-1">
+            <Link
+              to="/"
+              className="text-xs text-muted-foreground hover:text-foreground inline-flex items-center gap-1"
+            >
               <ArrowLeft className="h-3.5 w-3.5" /> Roadmap
             </Link>
             <div>
@@ -163,7 +168,11 @@ function CodePanel({ code }: { code: string }) {
           >
             Code
           </button>
-          <button onClick={copy} className="ml-2 p-1.5 rounded-md hover:bg-background" aria-label="Copy">
+          <button
+            onClick={copy}
+            className="ml-2 p-1.5 rounded-md hover:bg-background"
+            aria-label="Copy"
+          >
             <Copy className="h-3.5 w-3.5" />
           </button>
         </div>

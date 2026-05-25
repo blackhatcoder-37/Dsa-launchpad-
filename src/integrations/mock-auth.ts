@@ -61,19 +61,19 @@ export const mockAuth = {
    * Get current session
    */
   getSession: () => {
-  // Always check localStorage first for latest session
-  const stored = localStorage.getItem("mock-session");
-  if (stored) {
-    try {
-      currentSession = JSON.parse(stored);
-      return currentSession;
-    } catch (e) {
-      console.warn("Failed to parse mock session:", e);
-      return null;
+    // Always check localStorage first for latest session
+    const stored = localStorage.getItem("mock-session");
+    if (stored) {
+      try {
+        currentSession = JSON.parse(stored);
+        return currentSession;
+      } catch (e) {
+        console.warn("Failed to parse mock session:", e);
+        return null;
+      }
     }
-  }
-  return currentSession;
-},
+    return currentSession;
+  },
 
   /**
    * Sign out

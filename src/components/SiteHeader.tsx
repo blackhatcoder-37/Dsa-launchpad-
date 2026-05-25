@@ -23,8 +23,12 @@ export function SiteHeader() {
         </Link>
 
         <nav className="hidden md:flex items-center gap-1 text-sm">
-          <NavLink to="/" active={pathname === "/"}>Roadmap</NavLink>
-          <NavLink to="/capstones" active={pathname.startsWith("/capstones")}>Capstones</NavLink>
+          <NavLink to="/" active={pathname === "/"}>
+            Roadmap
+          </NavLink>
+          <NavLink to="/capstones" active={pathname.startsWith("/capstones")}>
+            Capstones
+          </NavLink>
         </nav>
 
         <div className="flex items-center gap-2">
@@ -54,12 +58,22 @@ export function SiteHeader() {
   );
 }
 
-function NavLink({ to, active, children }: { to: string; active: boolean; children: React.ReactNode }) {
+function NavLink({
+  to,
+  active,
+  children,
+}: {
+  to: string;
+  active: boolean;
+  children: React.ReactNode;
+}) {
   return (
     <Link
       to={to}
       className={`px-3 py-1.5 rounded-xl transition-colors ${
-        active ? "bg-secondary text-foreground" : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+        active
+          ? "bg-secondary text-foreground"
+          : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
       }`}
     >
       {children}

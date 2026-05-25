@@ -1,12 +1,66 @@
 // Tiny dependency-free Python syntax highlighter — minimal but pretty.
 const KW = new Set([
-  "and","as","assert","async","await","break","class","continue","def","del","elif","else","except",
-  "finally","for","from","global","if","import","in","is","lambda","None","nonlocal","not","or","pass",
-  "raise","return","True","False","try","while","with","yield","self",
+  "and",
+  "as",
+  "assert",
+  "async",
+  "await",
+  "break",
+  "class",
+  "continue",
+  "def",
+  "del",
+  "elif",
+  "else",
+  "except",
+  "finally",
+  "for",
+  "from",
+  "global",
+  "if",
+  "import",
+  "in",
+  "is",
+  "lambda",
+  "None",
+  "nonlocal",
+  "not",
+  "or",
+  "pass",
+  "raise",
+  "return",
+  "True",
+  "False",
+  "try",
+  "while",
+  "with",
+  "yield",
+  "self",
 ]);
 const BUILTINS = new Set([
-  "print","len","range","int","str","list","dict","set","tuple","min","max","sum","map","filter",
-  "sorted","enumerate","zip","abs","input","open","next","iter","type",
+  "print",
+  "len",
+  "range",
+  "int",
+  "str",
+  "list",
+  "dict",
+  "set",
+  "tuple",
+  "min",
+  "max",
+  "sum",
+  "map",
+  "filter",
+  "sorted",
+  "enumerate",
+  "zip",
+  "abs",
+  "input",
+  "open",
+  "next",
+  "iter",
+  "type",
 ]);
 
 function escape(s: string) {
@@ -37,7 +91,8 @@ export function highlightPython(src: string): string {
       }
 
       let html = "";
-      const re = /("(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\b\d+(?:\.\d+)?\b|\b[A-Za-z_][A-Za-z0-9_]*\b|[^\s])/g;
+      const re =
+        /("(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\b\d+(?:\.\d+)?\b|\b[A-Za-z_][A-Za-z0-9_]*\b|[^\s])/g;
       let last = 0;
       let m: RegExpExecArray | null;
       while ((m = re.exec(line))) {

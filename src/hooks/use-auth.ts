@@ -42,7 +42,7 @@ export function useAuth(): AuthState {
             created_at: mockSession.user.created_at,
             updated_at: mockSession.user.created_at,
             is_anonymous: false,
-          } as any,
+          } as unknown as Session["user"],
           access_token: mockSession.token,
           token_type: "bearer",
           expires_in: 3600,
@@ -60,12 +60,14 @@ export function useAuth(): AuthState {
 
     // Real Supabase auth flow
     // 1) set up listener FIRST
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, s) => {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, s) => {
       console.log("[Auth State Change]", _event, s?.user?.email);
       setSession(s);
       if (s?.user) {
         // fire-and-forget — touch last_login + role check
-        supabase.rpc("touch_last_login").catch(err => console.error("[RPC Error]", err));
+        supabase.rpc("touch_last_login").catch((err) => console.error("[RPC Error]", err));
         supabase
           .from("user_roles")
           .select("role")

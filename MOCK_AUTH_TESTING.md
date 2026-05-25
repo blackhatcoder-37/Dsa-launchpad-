@@ -1,11 +1,13 @@
 # 🧪 Mock Auth Testing Guide
 
 ## Overview
+
 Mock authentication allows you to test the complete login flow without needing real Google credentials or a Supabase database.
 
 ## ✅ What's Enabled
 
 Your `.env.local` has mock auth enabled:
+
 ```
 VITE_MOCK_AUTH=true
 VITE_MOCK_USERS=true
@@ -28,6 +30,7 @@ VITE_MOCK_USERS=true
 ## 🚀 Testing Steps
 
 ### Test 1: Google OAuth Flow
+
 1. Open http://localhost:8080/login
 2. Click **"Continue with Google"** button
 3. You'll be instantly signed in as "Demo User"
@@ -39,6 +42,7 @@ VITE_MOCK_USERS=true
 ---
 
 ### Test 2: Email/Password Signup (New Account)
+
 1. Open http://localhost:8080/login
 2. Click **"Create one"** to switch to signup mode
 3. Fill in:
@@ -52,6 +56,7 @@ VITE_MOCK_USERS=true
 ---
 
 ### Test 3: Email/Password Signin (Existing Account)
+
 1. Open http://localhost:8080/login (stay in signin mode)
 2. Fill in:
    - Email: `test@example.com`
@@ -63,6 +68,7 @@ VITE_MOCK_USERS=true
 ---
 
 ### Test 4: Full User Journey
+
 1. Sign in as `test@example.com`
 2. Homepage shows **"Continue Day 1"** button
 3. Click any day card to see module content
@@ -76,6 +82,7 @@ VITE_MOCK_USERS=true
 ---
 
 ### Test 5: Admin Dashboard (Optional)
+
 1. Navigate to `/admin` in URL bar
 2. Without admin role, shows "Access Denied"
 
@@ -86,6 +93,7 @@ VITE_MOCK_USERS=true
 ## 🔍 Browser DevTools Debugging
 
 Open **Console** (F12) to see:
+
 - Current session: `JSON.parse(localStorage.getItem('mock-session'))`
 - All mock users: `JSON.parse(localStorage.getItem('mock-users'))`
 - Clear session: `localStorage.removeItem('mock-session')`
@@ -95,12 +103,14 @@ Open **Console** (F12) to see:
 ## 🔄 Switching Between Mock & Real Auth
 
 **To use Real Supabase:**
+
 ```bash
 # Update .env.local
 VITE_MOCK_AUTH=false
 ```
 
 **To use Mock Auth:**
+
 ```bash
 # Update .env.local
 VITE_MOCK_AUTH=true
@@ -116,13 +126,13 @@ In browser console, you can:
 
 ```javascript
 // Check current session
-mockAuth.getSession()
+mockAuth.getSession();
 
 // Sign out
-mockAuth.signOut()
+mockAuth.signOut();
 
 // See all users
-localStorage.getItem('mock-users')
+localStorage.getItem("mock-users");
 
 // Add new test user
 // Note: Must be done via signup form or manually added to localStorage

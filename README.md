@@ -11,6 +11,7 @@ DSA Launchpad is a modern, beautifully designed educational platform inspired by
 ### Key Features
 
 ✨ **For Students:**
+
 - 📅 Interactive 25-day roadmap with phase-based progression
 - 🎨 Beautiful, warm UI inspired by Studio Ghibli
 - 📊 Real-time progress tracking
@@ -21,6 +22,7 @@ DSA Launchpad is a modern, beautifully designed educational platform inspired by
 - 🔐 Secure email/password + Google OAuth authentication
 
 📊 **For Instructors:**
+
 - 👥 Admin analytics dashboard with live student tracking
 - 📈 Progress visualization and filtering
 - 📧 Email list export for communications
@@ -33,6 +35,7 @@ DSA Launchpad is a modern, beautifully designed educational platform inspired by
 The 25-day curriculum covers:
 
 ### Phase 1: Foundations (Days 1-5)
+
 - RAM, pointers, and Big-O complexity
 - Dynamic arrays and memory allocation
 - String mechanics and two-pointer technique
@@ -40,6 +43,7 @@ The 25-day curriculum covers:
 - Linked lists
 
 ### Phase 2: Linear Structures (Days 6-10)
+
 - Stacks and function calls
 - Queues and deques
 - Binary search and divide-and-conquer
@@ -47,6 +51,7 @@ The 25-day curriculum covers:
 - Sorting fundamentals
 
 ### Phase 3: Recursion & Advanced Sorting (Days 11-15)
+
 - Mechanics of recursion
 - Merge sort and divide-and-conquer
 - Quick sort and partitioning
@@ -54,6 +59,7 @@ The 25-day curriculum covers:
 - Complexity review
 
 ### Phase 4: Trees & Graphs (Days 16-20)
+
 - Binary trees and BSTs
 - Tree traversals (DFS: inorder, preorder, postorder)
 - Breadth-first search
@@ -61,6 +67,7 @@ The 25-day curriculum covers:
 - Graph traversals
 
 ### Phase 5: Optimization & Capstone (Days 21-25)
+
 - Heaps and priority queues
 - Greedy algorithms
 - Dynamic programming
@@ -70,6 +77,7 @@ The 25-day curriculum covers:
 ## 🚀 Quick Start
 
 ### Prerequisites
+
 - Node.js 18+
 - Supabase account
 - Google OAuth credentials (optional)
@@ -116,17 +124,20 @@ See [SETUP.md](./SETUP.md) for detailed deployment instructions.
 ## 🎨 Design System
 
 ### Colors (Studio Ghibli Inspired)
+
 - **Primary**: Lantern Amber - Warm, inviting accent
 - **Secondary**: Moss Green - Natural, calming
 - **Accent**: Cherry Blossom - Playful highlights
 - **Background**: Forest Dark - Comfortable and easy on eyes
 
 ### Typography
+
 - **Display**: Fraunces (serif) - Warm, welcoming
 - **Body**: Inter (sans-serif) - Clean, modern
 - **Mono**: JetBrains Mono - Code and technical content
 
 ### Animation
+
 - Subtle, smooth transitions
 - Hand-drawn-inspired SVG diagrams
 - Micro-interactions for feedback
@@ -134,20 +145,21 @@ See [SETUP.md](./SETUP.md) for detailed deployment instructions.
 
 ## 🔧 Tech Stack
 
-| Layer | Technology |
-|-------|------------|
-| **Frontend** | React 18 + TypeScript |
-| **Routing** | TanStack Router v1 |
-| **UI Components** | Shadcn/ui + Custom |
-| **Styling** | Tailwind CSS + Custom Tokens |
-| **State** | TanStack Query, React Hooks |
-| **Auth** | Supabase Auth, Lovable Cloud |
-| **Database** | PostgreSQL (Supabase) |
-| **Deployment** | Cloudflare Workers/Pages |
+| Layer             | Technology                   |
+| ----------------- | ---------------------------- |
+| **Frontend**      | React 18 + TypeScript        |
+| **Routing**       | TanStack Router v1           |
+| **UI Components** | Shadcn/ui + Custom           |
+| **Styling**       | Tailwind CSS + Custom Tokens |
+| **State**         | TanStack Query, React Hooks  |
+| **Auth**          | Supabase Auth, Lovable Cloud |
+| **Database**      | PostgreSQL (Supabase)        |
+| **Deployment**    | Cloudflare Workers/Pages     |
 
 ## 📊 Admin Dashboard Features
 
 ### Real-Time Analytics
+
 - Total students count
 - Average progress percentage
 - Active users (last 7 days)
@@ -155,6 +167,7 @@ See [SETUP.md](./SETUP.md) for detailed deployment instructions.
 - Visual progress bars with percentages
 
 ### Filtering & Sorting
+
 ```
 Phase Filters: All | Days 1-5 | 6-10 | 11-15 | 16-20 | 21-25
 Sort Options:  Progress ↓ | Last Login | Join Date | Email A-Z
@@ -162,6 +175,7 @@ Search:        By email or student name
 ```
 
 ### Data Export
+
 - CSV export of all student data
 - Copy email list for bulk communications
 - Last login timestamps
@@ -178,6 +192,7 @@ Search:        By email or student name
 ## 📱 Responsive Design
 
 Fully responsive across:
+
 - 📱 Mobile phones (320px+)
 - 📱 Tablets (768px+)
 - 💻 Desktops (1024px+)
@@ -186,6 +201,7 @@ Fully responsive across:
 ## 🎯 Student Progress Tracking
 
 ### What Gets Tracked
+
 - Module completion (which days finished)
 - Last login timestamp
 - Account creation date
@@ -193,6 +209,7 @@ Fully responsive across:
 - Optional: Learning pace preference, timezone, language
 
 ### What Students See
+
 - Current progress percentage
 - Completed days out of 25
 - Learning streak counter
@@ -226,12 +243,15 @@ Fully responsive across:
 ## 🐛 Troubleshooting
 
 ### Login Issues
+
 Check that Supabase credentials are correct and OAuth is configured.
 
 ### Admin Dashboard Not Showing
+
 Verify the user has the `admin` role in the `user_roles` table.
 
 ### Data Not Appearing
+
 Ensure database migrations have been applied and RLS policies are set.
 
 See [SETUP.md](./SETUP.md) for more troubleshooting tips.
@@ -239,16 +259,19 @@ See [SETUP.md](./SETUP.md) for more troubleshooting tips.
 ## 📧 Email Collection
 
 ### Information Collected at Signup
+
 - Email address (required)
 - Full name (required)
 - Password (required) or OAuth
 
 ### Data Storage
+
 - Stored securely in Supabase
 - Never shared without consent
 - GDPR compliant privacy practices
 
 ### Admin Access
+
 - Instructors can view emails through admin dashboard
 - Can export for newsletters or communications
 - Can filter by engagement level
@@ -285,6 +308,7 @@ MIT License - See LICENSE file for details
 ## 🌟 Version History
 
 ### v2.0 (Current)
+
 - Enhanced admin dashboard
 - Google OAuth integration
 - Improved homepage design
@@ -294,6 +318,7 @@ MIT License - See LICENSE file for details
 - Progress tracking with streaks
 
 ### v1.0
+
 - Initial launch
 - 25-day curriculum
 - Basic progress tracking

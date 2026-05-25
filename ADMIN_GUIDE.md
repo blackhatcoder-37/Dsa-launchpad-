@@ -33,6 +33,7 @@ Repeat the above steps for each instructor account.
 ### Top Section
 
 **Quick Stats:**
+
 - 📊 Total Students: Shows all enrolled students
 - 📈 Avg Progress: Overall cohort progress percentage
 - 🔥 Active This Week: Students who logged in last 7 days
@@ -40,10 +41,10 @@ Repeat the above steps for each instructor account.
 
 ### Action Buttons
 
-| Button | Function | Use Case |
-|--------|----------|----------|
-| 📥 Export CSV | Download all student data | Reporting, backups |
-| 📧 Copy Emails | Copy all filtered emails | Send newsletters, reminders |
+| Button         | Function                  | Use Case                    |
+| -------------- | ------------------------- | --------------------------- |
+| 📥 Export CSV  | Download all student data | Reporting, backups          |
+| 📧 Copy Emails | Copy all filtered emails  | Send newsletters, reminders |
 
 ## Using Filters
 
@@ -56,6 +57,7 @@ Located under search bar. Click to select:
 ```
 
 **Example Use Cases:**
+
 - Check students in Phase 1: Click "Days 1-5"
 - See advanced students: Click "Days 21-25"
 - All students: Click "All Phases"
@@ -63,12 +65,14 @@ Located under search bar. Click to select:
 ### Sort Options
 
 Select from dropdown:
+
 - **Progress ↓** (default): Highest progress first
 - **Last Login**: Most recent login first
 - **Join Date**: Newest members first
 - **Email A-Z**: Alphabetical by email
 
 **Example Workflows:**
+
 - Find at-risk students: Sort by "Last Login"
 - Welcome new members: Sort by "Join Date"
 - Celebrate progress: Sort by "Progress ↓"
@@ -76,29 +80,32 @@ Select from dropdown:
 ### Search
 
 **Search box** at top of filters:
+
 - Search by: Email address or full name
 - Case-insensitive
 - Real-time filtering
 
 **Example Searches:**
+
 - `sora@example.com` → Find Sora's account
 - `kiki` → Find all students with "kiki" in name/email
 
 ## Student Table Columns
 
-| Column | Shows | Notes |
-|--------|-------|-------|
-| **Student** | Name & Email | Click to view details (future) |
-| **Progress** | Visual bar + % | Green bar shows completion |
-| **Completed Days** | X/25 format | Badge showing count |
-| **Last Login** | Time since | Smart formatting (Today, 3d ago) |
-| **Joined** | Signup date | Shows when account created |
+| Column             | Shows          | Notes                            |
+| ------------------ | -------------- | -------------------------------- |
+| **Student**        | Name & Email   | Click to view details (future)   |
+| **Progress**       | Visual bar + % | Green bar shows completion       |
+| **Completed Days** | X/25 format    | Badge showing count              |
+| **Last Login**     | Time since     | Smart formatting (Today, 3d ago) |
+| **Joined**         | Signup date    | Shows when account created       |
 
 ## Data Export (CSV)
 
 ### Export Button
 
 Click **"Export CSV"** to download file named:
+
 ```
 dsa-launchpad-export-YYYY-MM-DD.csv
 ```
@@ -111,6 +118,7 @@ sora@example.com | Sora | 1,2,3,4,5 | 20 | 2026-05-21 10:30 | 2026-05-20
 ```
 
 ### Uses
+
 - Admin reports
 - Compliance/records
 - Progress analysis
@@ -124,6 +132,7 @@ sora@example.com | Sora | 1,2,3,4,5 | 20 | 2026-05-21 10:30 | 2026-05-20
 Click **"Copy Emails"** to copy all filtered student emails to clipboard.
 
 **Format:**
+
 ```
 email1@example.com; email2@example.com; email3@example.com
 ```
@@ -139,10 +148,11 @@ email1@example.com; email2@example.com; email3@example.com
 ### Example Messages
 
 **Weekly Check-in:**
+
 ```
 Hi everyone!
 
-Just checking in on your DSA Launchpad progress. You're doing great! 
+Just checking in on your DSA Launchpad progress. You're doing great!
 Keep it up this week.
 
 Best regards,
@@ -150,12 +160,14 @@ Best regards,
 ```
 
 **Module Reminder:**
+
 ```
 Hey! Just a gentle reminder that we're in Phase 2 of DSA Launchpad.
 If you have questions, feel free to reach out.
 ```
 
 **Congratulations:**
+
 ```
 🎉 Amazing work completing Phase 1!
 Ready for the next challenge? Phase 2 awaits!
@@ -170,6 +182,7 @@ Progress % = (Completed Days / 25) × 100
 ```
 
 **Interpretation:**
+
 - 0-20%: Just starting (Days 1-5)
 - 20-40%: Phase 2 (Days 6-10)
 - 40-60%: Phase 3 (Days 11-15)
@@ -179,6 +192,7 @@ Progress % = (Completed Days / 25) × 100
 ### Completed Days
 
 Shows list of days completed (e.g., "1,2,3,4,5"):
+
 - **Missing days**: Indicate areas needing catch-up
 - **Sequential days**: Show consistent progress
 - **Gaps**: May indicate student confusion
@@ -186,6 +200,7 @@ Shows list of days completed (e.g., "1,2,3,4,5"):
 ### Last Login
 
 Smart time formatting:
+
 - "Today" = Logged in today
 - "Yesterday" = Logged in yesterday
 - "3d ago" = 3 days ago
@@ -193,10 +208,11 @@ Smart time formatting:
 - "Never" = Never logged in
 
 **Engagement Interpretation:**
+
 - Today/Yesterday: Highly engaged ✅
 - <7 days: Regular engagement ✅
 - 7-14 days: Needs reminder ⚠️
-- >14 days: At-risk student 🚨
+- > 14 days: At-risk student 🚨
 
 ## Common Admin Tasks
 
@@ -250,50 +266,60 @@ Smart time formatting:
 ## Common Questions
 
 ### Q: Can I see individual student details?
+
 **A**: Currently shows summary. Detailed view coming soon.
 
 ### Q: How often does data update?
+
 **A**: Real-time. Data updates as students interact with platform.
 
 ### Q: Can students see the admin dashboard?
+
 **A**: No. Only accounts with admin role can access.
 
 ### Q: How do I add more admins?
+
 **A**: Use SQL in Supabase to insert role (see "Setting Up Admin Access").
 
 ### Q: Can I delete student records?
+
 **A**: Through Supabase console only. Not available in UI for safety.
 
 ### Q: What if a student signs up with wrong email?
+
 **A**: Have them create new account or contact Supabase support for correction.
 
 ## Keyboard Shortcuts (Coming Soon)
 
-| Shortcut | Action |
-|----------|--------|
-| `/` | Focus search |
-| `?` | Show shortcuts |
-| `E` | Export CSV |
-| `C` | Copy emails |
+| Shortcut | Action         |
+| -------- | -------------- |
+| `/`      | Focus search   |
+| `?`      | Show shortcuts |
+| `E`      | Export CSV     |
+| `C`      | Copy emails    |
 
 ## Troubleshooting
 
 ### Dashboard Blank?
+
 - Check if you have admin role
 - Clear browser cache
 - Refresh page
 
 ### Emails not showing?
+
 - Verify RLS policies in Supabase
 - Check database migration ran
 - Ensure students have logged in
 
 ### Export not working?
+
 - Try different browser
 - Check browser permissions
 - Ensure no popup blockers
 
 ### Can't add admins?
+
 - Verify Supabase project access
 - Check SQL syntax
 - Ensure user exists in auth.users
@@ -301,6 +327,7 @@ Smart time formatting:
 ## Best Practices
 
 ✅ **Do:**
+
 - Check dashboard weekly
 - Monitor at-risk students
 - Send encouragement emails
@@ -308,6 +335,7 @@ Smart time formatting:
 - Use filters for targeted outreach
 
 ❌ **Don't:**
+
 - Share student data publicly
 - Delete records from UI
 - Use emails without consent

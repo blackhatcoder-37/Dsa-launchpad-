@@ -3,7 +3,21 @@ import { useEffect, useState, useMemo } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/use-auth";
-import { Shield, Users, CheckCircle2, Clock, TrendingUp, Download, Search, Filter, Mail, Calendar, Activity, BarChart3, ArrowDown } from "lucide-react";
+import {
+  Shield,
+  Users,
+  CheckCircle2,
+  Clock,
+  TrendingUp,
+  Download,
+  Search,
+  Filter,
+  Mail,
+  Calendar,
+  Activity,
+  BarChart3,
+  ArrowDown,
+} from "lucide-react";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/_authenticated/admin")({
@@ -42,8 +56,16 @@ function AdminPage() {
         supabase.from("profiles").select("id,email,full_name,last_login_at,created_at"),
         supabase.from("module_progress").select("user_id,day"),
       ]);
-      if (profilesRes.error) { setErr(profilesRes.error.message); setLoadingData(false); return; }
-      if (progressRes.error) { setErr(progressRes.error.message); setLoadingData(false); return; }
+      if (profilesRes.error) {
+        setErr(profilesRes.error.message);
+        setLoadingData(false);
+        return;
+      }
+      if (progressRes.error) {
+        setErr(progressRes.error.message);
+        setLoadingData(false);
+        return;
+      }
 
       const byUser = new Map<string, number[]>();
       for (const p of progressRes.data ?? []) {
@@ -66,7 +88,10 @@ function AdminPage() {
     return rows
       .filter((r) => {
         const search = searchTerm.toLowerCase();
-        return r.email.toLowerCase().includes(search) || (r.full_name?.toLowerCase() ?? "").includes(search);
+        return (
+          r.email.toLowerCase().includes(search) ||
+          (r.full_name?.toLowerCase() ?? "").includes(search)
+        );
       })
       .filter((r) => {
         if (filterPhase === "all") return true;
@@ -95,8 +120,13 @@ function AdminPage() {
   const stats = useMemo(() => {
     if (!rows) return { total: 0, avgProgress: 0, activeWeek: 0, completed: 0 };
     const total = rows.length;
-    const avgProgress = total > 0 ? Math.round((rows.reduce((s, r) => s + r.completed_days.length, 0) / (total * 25)) * 100) : 0;
-    const activeWeek = rows.filter((r) => r.last_login_at && Date.now() - +new Date(r.last_login_at) < 7 * 86400000).length;
+    const avgProgress =
+      total > 0
+        ? Math.round((rows.reduce((s, r) => s + r.completed_days.length, 0) / (total * 25)) * 100)
+        : 0;
+    const activeWeek = rows.filter(
+      (r) => r.last_login_at && Date.now() - +new Date(r.last_login_at) < 7 * 86400000,
+    ).length;
     const completed = rows.filter((r) => r.completed_days.length === 25).length;
     return { total, avgProgress, activeWeek, completed };
   }, [rows]);
@@ -111,10 +141,17 @@ function AdminPage() {
         <SiteHeader />
         <div className="text-center">
           <Shield className="mx-auto h-16 w-16 text-red-500" />
-          <h1 className="mt-4 text-3xl font-bold tracking-tight text-stone-800 sm:text-5xl">Access Denied</h1>
-          <p className="mt-6 text-base leading-7 text-stone-600">You do not have permission to view this page.</p>
+          <h1 className="mt-4 text-3xl font-bold tracking-tight text-stone-800 sm:text-5xl">
+            Access Denied
+          </h1>
+          <p className="mt-6 text-base leading-7 text-stone-600">
+            You do not have permission to view this page.
+          </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
-            <Link to="/" className="rounded-md bg-lantern-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-lantern-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lantern-600">
+            <Link
+              to="/"
+              className="rounded-md bg-lantern-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-lantern-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lantern-600"
+            >
               Go back home
             </Link>
           </div>
@@ -163,9 +200,12 @@ function AdminPage() {
           <p className="text-sm text-muted-foreground mb-5">
             You need the admin role to view cohort analytics.
           </p>
-          <Link to="/" className="text-primary hover:underline text-sm">Back to roadmap</Link>
+          <Link to="/" className="text-primary hover:underline text-sm">
+            Back to roadmap
+          </Link>
           <p className="mt-6 text-xs text-muted-foreground">
-            To grant admin: open the backend, find your user in the <code>user_roles</code> table, and insert a row with role=<code>admin</code>.
+            To grant admin: open the backend, find your user in the <code>user_roles</code> table,
+            and insert a row with role=<code>admin</code>.
           </p>
         </div>
       </div>
@@ -205,10 +245,26 @@ function AdminPage() {
 
         {/* Stats Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-          <StatCard icon={<Users className="h-4 w-4" />} label="Total Students" value={stats.total} />
-          <StatCard icon={<BarChart3 className="h-4 w-4" />} label="Avg Progress" value={`${stats.avgProgress}%`} />
-          <StatCard icon={<Activity className="h-4 w-4" />} label="Active This Week" value={stats.activeWeek} />
-          <StatCard icon={<CheckCircle2 className="h-4 w-4" />} label="Fully Completed" value={stats.completed} />
+          <StatCard
+            icon={<Users className="h-4 w-4" />}
+            label="Total Students"
+            value={stats.total}
+          />
+          <StatCard
+            icon={<BarChart3 className="h-4 w-4" />}
+            label="Avg Progress"
+            value={`${stats.avgProgress}%`}
+          />
+          <StatCard
+            icon={<Activity className="h-4 w-4" />}
+            label="Active This Week"
+            value={stats.activeWeek}
+          />
+          <StatCard
+            icon={<CheckCircle2 className="h-4 w-4" />}
+            label="Fully Completed"
+            value={stats.completed}
+          />
         </div>
 
         {/* Filters and Search */}
@@ -258,7 +314,9 @@ function AdminPage() {
 
         {err && <div className="text-destructive text-sm mb-4 hand-card p-4">Error: {err}</div>}
 
-        {loading_data && <div className="text-center text-muted-foreground">Loading student data...</div>}
+        {loading_data && (
+          <div className="text-center text-muted-foreground">Loading student data...</div>
+        )}
 
         {!loading_data && filtered.length === 0 && (
           <div className="text-center text-muted-foreground hand-card p-8">No students found</div>
@@ -295,7 +353,9 @@ function AdminPage() {
                               style={{ width: `${(r.completed_days.length / 25) * 100}%` }}
                             />
                           </div>
-                          <span className="text-xs font-mono whitespace-nowrap">{Math.round((r.completed_days.length / 25) * 100)}%</span>
+                          <span className="text-xs font-mono whitespace-nowrap">
+                            {Math.round((r.completed_days.length / 25) * 100)}%
+                          </span>
                         </div>
                       </td>
                       <td className="px-4 py-3">
@@ -324,19 +384,30 @@ function AdminPage() {
         )}
 
         <p className="mt-6 text-xs text-muted-foreground text-center">
-          Showing {filtered.length} of {rows?.length ?? 0} students · Last updated: {new Date().toLocaleTimeString()}
+          Showing {filtered.length} of {rows?.length ?? 0} students · Last updated:{" "}
+          {new Date().toLocaleTimeString()}
         </p>
       </div>
     </div>
   );
 }
 
-function StatCard({ icon, label, value }: { icon: React.ReactNode; label: string; value: string | number }) {
+function StatCard({
+  icon,
+  label,
+  value,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  value: string | number;
+}) {
   return (
     <div className="hand-card p-4">
       <div className="flex items-start justify-between">
         <div>
-          <div className="text-xs text-muted-foreground font-mono uppercase tracking-wider mb-1">{label}</div>
+          <div className="text-xs text-muted-foreground font-mono uppercase tracking-wider mb-1">
+            {label}
+          </div>
           <div className="font-display text-2xl">{value}</div>
         </div>
         <div className="text-primary/30">{icon}</div>
