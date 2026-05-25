@@ -540,4 +540,132 @@ export const capstones: Capstone[] = [
     ],
     emoji: "🔗",
   },
+  {
+    slug: "movie-search-engine",
+    title: "Movie Search Engine",
+    pitch: "Full-text search with inverted index.",
+    description:
+      "Build a search engine for movies using an inverted index. Users type keywords and get results ranked by relevance. Perfect for understanding how real search engines work under the hood.",
+    structures: ["Inverted Index (Hash Map)", "Set", "Priority Queue", "Trie"],
+    steps: [
+      "Load a movie dataset (title, description, genre) from CSV.",
+      "Build an inverted index: word → list of movie IDs containing it.",
+      "Implement a ranking algorithm (term frequency + relevance).",
+      "Use a Trie for autocomplete suggestions as users type.",
+      "Create a simple CLI interface with fuzzy matching.",
+    ],
+    emoji: "🎬",
+  },
+  {
+    slug: "calendar-scheduler",
+    title: "Meeting Scheduler",
+    pitch: "Find free time slots using intervals & sorting.",
+    description:
+      "An algorithm that finds the best times for group meetings by analyzing everyone's calendars. Combines interval merging, sorting, and conflict detection.",
+    structures: ["Interval List", "Sorting", "Set Intersection", "Hash Map"],
+    steps: [
+      "Parse calendar events for multiple users from JSON.",
+      "Merge overlapping intervals for each person's busy time.",
+      "Find intersection of free slots across all attendees.",
+      "Rank time slots by how many people prefer them.",
+      "Output the top 5 suggested meeting times.",
+    ],
+    emoji: "📅",
+  },
+  {
+    slug: "word-ladder-bfs",
+    title: "Word Ladder Transformer",
+    pitch: "Word game solver using BFS.",
+    description:
+      "Transform one word into another by changing one letter at a time, using only valid dictionary words. A fun BFS problem that's great for portfolios.",
+    structures: ["Graph", "BFS", "Set", "Hash Map"],
+    steps: [
+      "Load a dictionary of words (or use a word list API).",
+      "Build an implicit graph where neighbors are one letter apart.",
+      "Use BFS to find the shortest transformation path.",
+      "Optimize by building a pattern→words map (e.g., '_og' → dog, fog, log).",
+      "Display the path visually: CAT → BAT → BAD → LAD → LADY.",
+    ],
+    emoji: "🔤",
+  },
+  {
+    slug: "lru-cache-project",
+    title: "LRU Cache Service",
+    pitch: "Memory-efficient caching with doubly-linked list.",
+    description:
+      "Build an LRU (Least Recently Used) cache that evicts old items when full. Uses a hash map + doubly-linked list for O(1) get/put operations.",
+    structures: ["Doubly Linked List", "Hash Map", "Cache"],
+    steps: [
+      "Implement a Node class with prev/next pointers.",
+      "Create dummy head and tail nodes to avoid edge cases.",
+      "Use a hash map to track value and node position.",
+      "On get/put, move accessed node to the front (most recent).",
+      "When capacity exceeded, evict the tail node (least recent).",
+    ],
+    emoji: "💾",
+  },
+  {
+    slug: "social-network-analysis",
+    title: "Social Network Analytics",
+    pitch: "Graph algorithms for friendship insights.",
+    description:
+      "Analyze a social network to find communities, influential users, and shortest paths between people. A real-world use of graph theory.",
+    structures: ["Undirected Graph", "DFS/BFS", "Union-Find", "Dijkstra's Algorithm"],
+    steps: [
+      "Load user friendship data and build an adjacency list.",
+      "Find connected components (groups of friends).",
+      "Calculate each person's closeness centrality.",
+      "Use Union-Find to detect friend groups efficiently.",
+      "Find shortest path between two users with BFS.",
+    ],
+    emoji: "👥",
+  },
+  {
+    slug: "autocomplete-system",
+    title: "Autocomplete Suggestion System",
+    pitch: "Real-time suggestions with Trie & ranking.",
+    description:
+      "Build a system that ranks search suggestions based on frequency and recency. Used by Google, Amazon, and Discord.",
+    structures: ["Trie", "Min-Heap", "Hash Map", "Timestamp Tracking"],
+    steps: [
+      "Create a Trie node that stores children and top suggestions.",
+      "Track frequency and last-used timestamp for each phrase.",
+      "Implement search to return top 3 suggestions by frequency.",
+      "Update Trie nodes with hot suggestions on each query.",
+      "Add a 'trending' mode that weights recent searches higher.",
+    ],
+    emoji: "✨",
+  },
+  {
+    slug: "expense-splitter",
+    title: "Group Expense Splitter",
+    pitch: "Settle debts with optimal transactions.",
+    description:
+      "When a group shares expenses, figure out who owes whom and minimize the number of transactions needed. A graph problem dressed as real life.",
+    structures: ["Graph", "Hash Map", "Greedy Algorithm"],
+    steps: [
+      "Parse expense logs: who paid how much for what.",
+      "Calculate net balance for each person (owed - paid).",
+      "Build a debt graph where edges are 'X owes Y'.",
+      "Use a greedy algorithm to pair up creditors and debtors.",
+      "Output the minimal set of transactions to settle everyone.",
+    ],
+    emoji: "💸",
+  },
+  {
+    slug: "file-system-simulator",
+    title: "File System Simulator",
+    pitch: "Build a mini file system with tree traversal.",
+    description:
+      "Simulate a file system with directories and files. Implement mkdir, ls, cd, and file operations using trees and recursion.",
+    structures: ["N-ary Tree", "Recursion", "Hash Map", "Stack"],
+    steps: [
+      "Create a Directory class that holds files and subdirectories.",
+      "Implement cd, ls, mkdir, and touch commands.",
+      "Track current directory with a stack for backtracking.",
+      "Implement find command using DFS across the tree.",
+      "Add file size calculation with recursive summation.",
+    ],
+    emoji: "📁",
+  },
 ];
