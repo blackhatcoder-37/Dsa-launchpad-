@@ -12,9 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as CapstonesRouteImport } from './routes/capstones'
 import { Route as AdminRouteImport } from './routes/admin'
-import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as AuthenticatedDayDayRouteImport } from './routes/_authenticated/day.$day'
+import { Route as DayDayRouteImport } from './routes/day.$day'
 
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
@@ -31,19 +30,15 @@ const AdminRoute = AdminRouteImport.update({
   path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthenticatedRoute = AuthenticatedRouteImport.update({
-  id: '/_authenticated',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthenticatedDayDayRoute = AuthenticatedDayDayRouteImport.update({
+const DayDayRoute = DayDayRouteImport.update({
   id: '/day/$day',
   path: '/day/$day',
-  getParentRoute: () => AuthenticatedRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -51,45 +46,37 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminRoute
   '/capstones': typeof CapstonesRoute
   '/login': typeof LoginRoute
-  '/day/$day': typeof AuthenticatedDayDayRoute
+  '/day/$day': typeof DayDayRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/capstones': typeof CapstonesRoute
   '/login': typeof LoginRoute
-  '/day/$day': typeof AuthenticatedDayDayRoute
+  '/day/$day': typeof DayDayRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/_authenticated': typeof AuthenticatedRouteWithChildren
   '/admin': typeof AdminRoute
   '/capstones': typeof CapstonesRoute
   '/login': typeof LoginRoute
-  '/_authenticated/day/$day': typeof AuthenticatedDayDayRoute
+  '/day/$day': typeof DayDayRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths: '/' | '/admin' | '/capstones' | '/login' | '/day/$day'
   fileRoutesByTo: FileRoutesByTo
   to: '/' | '/admin' | '/capstones' | '/login' | '/day/$day'
-  id:
-    | '__root__'
-    | '/'
-    | '/_authenticated'
-    | '/admin'
-    | '/capstones'
-    | '/login'
-    | '/_authenticated/day/$day'
+  id: '__root__' | '/' | '/admin' | '/capstones' | '/login' | '/day/$day'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
   AdminRoute: typeof AdminRoute
   CapstonesRoute: typeof CapstonesRoute
   LoginRoute: typeof LoginRoute
+  DayDayRoute: typeof DayDayRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -115,13 +102,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_authenticated': {
-      id: '/_authenticated'
-      path: ''
-      fullPath: '/'
-      preLoaderRoute: typeof AuthenticatedRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -129,34 +109,22 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_authenticated/day/$day': {
-      id: '/_authenticated/day/$day'
+    '/day/$day': {
+      id: '/day/$day'
       path: '/day/$day'
       fullPath: '/day/$day'
-      preLoaderRoute: typeof AuthenticatedDayDayRouteImport
-      parentRoute: typeof AuthenticatedRoute
+      preLoaderRoute: typeof DayDayRouteImport
+      parentRoute: typeof rootRouteImport
     }
   }
 }
 
-interface AuthenticatedRouteChildren {
-  AuthenticatedDayDayRoute: typeof AuthenticatedDayDayRoute
-}
-
-const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
-  AuthenticatedDayDayRoute: AuthenticatedDayDayRoute,
-}
-
-const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
-  AuthenticatedRouteChildren,
-)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AuthenticatedRoute: AuthenticatedRouteWithChildren,
   AdminRoute: AdminRoute,
   CapstonesRoute: CapstonesRoute,
   LoginRoute: LoginRoute,
+  DayDayRoute: DayDayRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

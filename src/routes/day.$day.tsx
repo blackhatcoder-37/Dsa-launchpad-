@@ -9,7 +9,7 @@ import { useProgress } from "@/hooks/use-progress";
 import { ArrowLeft, ArrowRight, ExternalLink, Check, Copy, BookOpen, Code2 } from "lucide-react";
 import { toast } from "sonner";
 
-export const Route = createFileRoute("/_authenticated/day/$day")({
+export const Route = createFileRoute("/day/$day")({
   component: DayPage,
 });
 
