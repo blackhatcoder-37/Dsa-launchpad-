@@ -171,7 +171,7 @@ function HomePage() {
                         : isCurrent
                         ? "hand-card bg-gradient-lantern text-primary-foreground shadow-lg hover:shadow-lg hover:scale-105"
                         : !user
-                        ? "hand-card opacity-60 cursor-not-allowed border border-border"
+                        ? "hand-card opacity-60 border border-border"
                         : "hand-card hover:bg-secondary hover:scale-105 border border-border"
                       }
                     `}
