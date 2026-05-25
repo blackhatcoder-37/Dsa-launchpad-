@@ -11,9 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as CapstonesRouteImport } from './routes/capstones'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedDayDayRouteImport } from './routes/_authenticated/day.$day'
 
 const LoginRoute = LoginRouteImport.update({
@@ -26,6 +26,11 @@ const CapstonesRoute = CapstonesRouteImport.update({
   path: '/capstones',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedRoute = AuthenticatedRouteImport.update({
   id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
@@ -35,11 +40,6 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
-  id: '/admin',
-  path: '/admin',
-  getParentRoute: () => AuthenticatedRoute,
-} as any)
 const AuthenticatedDayDayRoute = AuthenticatedDayDayRouteImport.update({
   id: '/day/$day',
   path: '/day/$day',
@@ -48,45 +48,46 @@ const AuthenticatedDayDayRoute = AuthenticatedDayDayRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/capstones': typeof CapstonesRoute
   '/login': typeof LoginRoute
-  '/admin': typeof AuthenticatedAdminRoute
   '/day/$day': typeof AuthenticatedDayDayRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/capstones': typeof CapstonesRoute
   '/login': typeof LoginRoute
-  '/admin': typeof AuthenticatedAdminRoute
   '/day/$day': typeof AuthenticatedDayDayRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteWithChildren
+  '/admin': typeof AdminRoute
   '/capstones': typeof CapstonesRoute
   '/login': typeof LoginRoute
-  '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/_authenticated/day/$day': typeof AuthenticatedDayDayRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/capstones' | '/login' | '/admin' | '/day/$day'
+  fullPaths: '/' | '/admin' | '/capstones' | '/login' | '/day/$day'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/capstones' | '/login' | '/admin' | '/day/$day'
+  to: '/' | '/admin' | '/capstones' | '/login' | '/day/$day'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
+    | '/admin'
     | '/capstones'
     | '/login'
-    | '/_authenticated/admin'
     | '/_authenticated/day/$day'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
+  AdminRoute: typeof AdminRoute
   CapstonesRoute: typeof CapstonesRoute
   LoginRoute: typeof LoginRoute
 }
@@ -107,6 +108,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CapstonesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated': {
       id: '/_authenticated'
       path: ''
@@ -121,13 +129,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_authenticated/admin': {
-      id: '/_authenticated/admin'
-      path: '/admin'
-      fullPath: '/admin'
-      preLoaderRoute: typeof AuthenticatedAdminRouteImport
-      parentRoute: typeof AuthenticatedRoute
-    }
     '/_authenticated/day/$day': {
       id: '/_authenticated/day/$day'
       path: '/day/$day'
@@ -139,12 +140,10 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedRouteChildren {
-  AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
   AuthenticatedDayDayRoute: typeof AuthenticatedDayDayRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
-  AuthenticatedAdminRoute: AuthenticatedAdminRoute,
   AuthenticatedDayDayRoute: AuthenticatedDayDayRoute,
 }
 
@@ -155,6 +154,7 @@ const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRoute: AuthenticatedRouteWithChildren,
+  AdminRoute: AdminRoute,
   CapstonesRoute: CapstonesRoute,
   LoginRoute: LoginRoute,
 }
