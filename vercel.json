@@ -13,14 +13,8 @@
       }
     },
     {
-      "src": "/index.html",
-      "headers": {
-        "cache-control": "public, max-age=3600"
-      }
-    },
-    {
       "src": "/(.*)",
-      "dest": "/index.html"
+      "dest": "/api/index"
     }
   ]
 }
