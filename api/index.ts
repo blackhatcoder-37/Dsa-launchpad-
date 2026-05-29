@@ -1,6 +1,6 @@
 import { Readable } from "node:stream";
 
-import server from "../src/server";
+import server from "../dist/server/index.js";
 
 function toHeaders(input: any): Headers {
   const headers = new Headers();
